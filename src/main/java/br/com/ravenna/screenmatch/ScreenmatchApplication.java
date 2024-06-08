@@ -13,10 +13,13 @@ public class ScreenmatchApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println("Primeiro projeto Spring");
 		
-
+		var consumoApi = new ConsumoAPI();
+    	var json = consumoApi.obterDados("https://www.omdbapi.com/?t=gilmore+girls&apikey=6608c387");
+    	System.out.println(json);
+		ConverteDados conversor = new ConverteDados();
+		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
+		System.out.println(dados);
 	}
 
 }
